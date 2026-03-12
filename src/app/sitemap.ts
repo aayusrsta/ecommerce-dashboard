@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: products } = await getProducts();
 
   const productUrls = products?.map(p => ({
-    url: `https://kinmel.vercel.app/products/${p.id}`,
+    url: `https://ecommerce-dashboard-five-omega.vercel.app/products/${p.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
@@ -13,13 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://kinmel.vercel.app",
+      url: "https://ecommerce-dashboard-five-omega.vercel.app",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://kinmel.vercel.app/products",
+      url: "https://ecommerce-dashboard-five-omega.vercel.app/products",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,

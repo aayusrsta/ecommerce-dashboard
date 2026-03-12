@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/cart",
     },
-    sitemap: "https://kinmel.vercel.app/sitemap.xml",
+    sitemap: "https://ecommerce-dashboard-five-omega.vercel.app/sitemap.xml",
   };
 }
