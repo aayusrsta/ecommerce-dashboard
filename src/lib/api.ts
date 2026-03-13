@@ -1,10 +1,12 @@
 const BASE_URL = "https://fakestoreapi.com";
+const APP_URL = process.env.NODE_ENV === "production"
+    ? "https://ecommerce-dashboard-five-omega.vercel.app"
+    : "http://localhost:3000";
 
 async function interceptor<T>(endpoint: string): Promise<{ data: T | null; error: string | null }> {
     try {
         const res = await fetch(`${BASE_URL}${endpoint}`, {
             cache: "no-store",
-            // next: { revalidate: 60 },
         });
 
         if (!res.ok) {
@@ -12,18 +14,19 @@ async function interceptor<T>(endpoint: string): Promise<{ data: T | null; error
         }
 
         const data: T = await res.json();
-        console.log(`Fetched ${endpoint}:`, data);
         return { data, error: null };
     } catch (err) {
         const message = err instanceof Error ? err.message : "Something went wrong";
-        console.error(`Error fetching ${endpoint}:`, err);
         return { data: null, error: message };
     }
 }
 
 export async function getProducts(sort?: string) {
     const query = sort ? `?sort=${sort}` : "";
-    return interceptor<import("@/types").Product[]>(`/products${query}`);
+    const res = await fetch(`${APP_URL}/api/products${query}`, { cache: "no-store" });
+    if (!res.ok) return { data: null, error: `Request failed with status ${res.status}` };
+    const data = await res.json();
+    return { data, error: null };
 }
 
 export async function getProduct(id: number) {
