@@ -1,10 +1,11 @@
 import { getProducts } from "@/lib/api";
 import type { MetadataRoute } from "next";
+import { Product } from "@/types";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: products } = await getProducts();
 
-  const productUrls = products?.map(p => ({
+  const productUrls = products?.map((p: Product) => ({
     url: `https://ecommerce-dashboard-five-omega.vercel.app/products/${p.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
