@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import ProductDetail from "./ProductDetail";
 import type { Metadata } from "next";
+import { Product } from "@/types";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -12,7 +13,7 @@ interface Props {
 export async function generateStaticParams() {
   const { data: products } = await getProducts();
   if (!products) return [];
-  return products.map(p => ({ id: String(p.id) }));
+  return products.map((p: Product) => ({ id: String(p.id) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
