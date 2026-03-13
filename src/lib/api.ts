@@ -12,9 +12,11 @@ async function interceptor<T>(endpoint: string): Promise<{ data: T | null; error
         }
 
         const data: T = await res.json();
+        console.log(`Fetched ${endpoint}:`, data);
         return { data, error: null };
     } catch (err) {
         const message = err instanceof Error ? err.message : "Something went wrong";
+        console.error(`Error fetching ${endpoint}:`, err);
         return { data: null, error: message };
     }
 }
