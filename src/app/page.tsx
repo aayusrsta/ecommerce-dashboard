@@ -3,14 +3,11 @@ import { getProducts } from "@/lib/api";
 import ProductCard from "@/components/ui/ProductCard";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { useEffect } from "react";
 
 export default async function HomePage() {
   const { data: products } = await getProducts();
   const featured = products?.slice(0, 3) ?? [];
-  useEffect(() => {
-    console.log('products', products);
-  }, [products]);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
