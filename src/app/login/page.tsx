@@ -79,7 +79,7 @@ function LoginPrompt() {
               </button>
             </form>
 
-            <p className="mt-6 text-center text-xs text-gray-400">
+            {/* <p className="mt-6 text-center text-xs text-gray-400">
               Use test credentials —{" "}
               <button
                 onClick={() => { setUsername("johnd"); setPassword("m38rmF$"); }}
@@ -87,7 +87,7 @@ function LoginPrompt() {
               >
                 fill for me
               </button>
-            </p>
+            </p> */}
           </div>
         </div>
       </main>
